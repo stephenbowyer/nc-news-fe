@@ -10,3 +10,10 @@ export const fetchArticles = () => {
         return response.data
     })
 }
+
+export const fetchArticle = (articleId) => {
+    return marketApi.get(`/articles/${articleId}`)
+    .then((response) => {
+        return response.data
+    })
+}

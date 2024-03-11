@@ -9,8 +9,12 @@
     font-weight: 700;
 }
 
-.author{
+.author, .article-date{
     margin-left: 1em;
+}
+
+.article-date{
+    display: block;
 }
 
 .up-vote, .comments{
@@ -25,4 +29,8 @@
     max-width: 75vw;
     height: 10em;
     object-fit:cover;
+}
+
+.article-body{
+    margin-top: 2em;
 }

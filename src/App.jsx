@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import './App.css'
-import ArticlesList from './components/ArticlesList.jsx'
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import ArticlesList from './components/ArticlesList.jsx';
+import Article from './components/Article.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <ArticlesList />
+    <Routes>
+      <Route path='/' element={<ArticlesList />} />
+      <Route path='/article/:article_id' element={<Article />} />
+    </Routes>
     </>
   );
 }
 
-export default App
+export default App;
