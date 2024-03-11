@@ -22,6 +22,7 @@
 
 .article-image{
     width: 30em;
+    max-width: 75vw;
     height: 10em;
     object-fit:cover;
 }
