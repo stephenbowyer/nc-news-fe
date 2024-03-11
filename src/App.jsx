@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import ArticlesList from './components/ArticlesList'
+import ArticlesList from './components/ArticlesList.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
