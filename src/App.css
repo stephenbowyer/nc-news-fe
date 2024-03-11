@@ -1,0 +1,27 @@
+.article-item{
+    list-style-type: none;
+    line-height: 1.6em;
+    padding-bottom: 2em;
+}
+
+.article-title{
+    display: block;
+    font-weight: 700;
+}
+
+.author{
+    margin-left: 1em;
+}
+
+.up-vote, .comments{
+    border-radius: 40%;
+    background-color:azure;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.article-image{
+    width: 30em;
+    height: 10em;
+    object-fit:cover;
+}
