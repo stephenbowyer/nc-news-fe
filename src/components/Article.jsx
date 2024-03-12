@@ -9,6 +9,7 @@ const Article = () => {
     const [article, setArticle] = useState({});
     const [comments, setComments] = useState([]);
     const [allowVote, setAllowVote] = useState(true);
+    const [feedback, setFeedback] = useState('');
 
     useEffect(() => {
         fetchArticle(article_id).then(({article}) => {
@@ -29,11 +30,13 @@ const Article = () => {
 
     const upVote = () => {
         if (allowVote){
+            setFeedback('');
             updateVoteDisplay(1);
             setAllowVote(false);
             upVoteArticle(article_id).catch(() => {
                 updateVoteDisplay(-1);
                 setAllowVote(true);
+                setFeedback('Unable to update vote');
             });
         }
     }
@@ -49,6 +52,7 @@ const Article = () => {
                 <span className="author">By {article.author}</span>
                 <span className={allowVote ? 'up-vote clickable' : 'up-vote'} onClick={upVote}>🔼{article.votes}</span>
                 <span className="comments">✉️{article.comment_count}</span>
+                <span className="article-feedback">{feedback}</span>
             </div>
             <div className="article-body">{article.body}</div>
             <h3>Comments</h3>
