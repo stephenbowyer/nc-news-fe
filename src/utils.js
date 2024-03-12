@@ -18,6 +18,13 @@ export const fetchArticle = (articleId) => {
     })
 }
 
+export const upVoteArticle = (articleId, votes = 1) => {
+    return marketApi.patch(`/articles/${articleId}`, {inc_votes: votes})
+    .then((response) => {
+        return response.data
+    })
+}
+
 export const fetchComments = (articleId) => {
     return marketApi.get(`/articles/${articleId}/comments`)
     .then((response) => {
