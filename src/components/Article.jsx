@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { fetchArticle, fetchComments, upVoteArticle } from '../utils.js';
 import CommentCard from './CommentCard.jsx';
-
+import AddComment from './AddComment.jsx';
 
 const Article = () => {
     const {article_id} = useParams();
@@ -57,6 +57,7 @@ const Article = () => {
             <div className="article-body">{article.body}</div>
             <h3>Comments</h3>
             <ul className="comments-list">
+                <li className="comment-item newcomment" key="new-comment"><AddComment article_id={article_id} setComments={setComments} /></li>
                 {comments.length > 0 ? comments.map((comment) => (<li className="comment-item" key={"articlecard"+comment.comment_id}><CommentCard comment={comment} /></li>)) : <li>No comments yet. Be the first to have your say.</li>}
             </ul>
             </>

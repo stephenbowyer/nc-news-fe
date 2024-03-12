@@ -31,3 +31,10 @@ export const fetchComments = (articleId) => {
         return response.data
     })
 }
+
+export const postComment = (articleId, username, body) => {
+    return marketApi.post(`/articles/${articleId}/comments`, {username, body})
+    .then((response) => {
+        return response.data
+    })   
+}
