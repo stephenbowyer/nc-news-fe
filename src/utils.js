@@ -38,3 +38,10 @@ export const postComment = (articleId, username, body) => {
         return response.data
     })   
 }
+
+export const deleteComment = (commentId) => {
+    return marketApi.delete(`/comments/${commentId}`)
+    .then((response) => {
+        return response.data
+    })
+}

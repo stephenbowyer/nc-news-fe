@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { postComment } from '../utils.js';
 
-const AddComment = ({article_id, setComments}) => {
-    const username = "grumpy19"; // hard coded user
+const AddComment = ({article_id, setComments, username}) => {
     const [newCommentBody, setNewCommentBody] = useState('');
     const [feedback, setFeedback] = useState('');
 
