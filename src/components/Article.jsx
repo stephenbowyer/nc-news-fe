@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { fetchArticle } from '../utils.js';
+import { fetchArticle, fetchComments } from '../utils.js';
+import CommentCard from './CommentCard.jsx';
+
 
 const Article = () => {
     const {article_id} = useParams();
     const [article, setArticle] = useState({});
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         fetchArticle(article_id).then(({article}) => {
             setArticle(article);
+        });
+        fetchComments(article_id).then(({comments}) => {
+            setComments(comments);
         });
     }, []);
 
@@ -25,6 +31,10 @@ const Article = () => {
                 <span className="comments">✉️{article.comment_count}</span>
             </div>
             <div className="article-body">{article.body}</div>
+            <h3>Comments</h3>
+            <ul className="comments-list">
+                {comments.length > 0 ? comments.map((comment) => (<li className="comment-item" key={"articlecard"+comment.comment_id}><CommentCard comment={comment} /></li>)) : <li>No comments yet. Be the first to have your say.</li>}
+            </ul>
             </>
         ) : <p className="loading">Loading...</p> }
         </>

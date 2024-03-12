@@ -17,3 +17,10 @@ export const fetchArticle = (articleId) => {
         return response.data
     })
 }
+
+export const fetchComments = (articleId) => {
+    return marketApi.get(`/articles/${articleId}/comments`)
+    .then((response) => {
+        return response.data
+    })
+}
