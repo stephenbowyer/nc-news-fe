@@ -8,12 +8,21 @@ const ArticlesList = () => {
     const [allArticles, setAllArticles] = useState([]);
     const [sortBy, setSortBy] = useState('created_at'); // default: sort by date
     const [sortDirection, setSortDirection] = useState('desc'); // default: newest first
+    const [articleListMessage, setArticleListMessage] = useState('Loading...');
 
     const topic = searchParams.get('topic');
 
     useEffect(() => {
-            fetchArticles(topic, sortBy, sortDirection).then(({articles}) => {
+        setArticleListMessage('Loading...');
+        fetchArticles(topic, sortBy, sortDirection).then(({articles}) => {
             setAllArticles(articles);
+            setArticleListMessage('');
+        }).catch(({response}) => {
+            if (response.status === 404){
+                setArticleListMessage('⛔ Topic Not Found');
+            }else{
+                setArticleListMessage('⛔ Error Loading Topic');
+            }
         });
     }, [topic, sortBy, sortDirection]);
 
@@ -31,6 +40,7 @@ const ArticlesList = () => {
                 <span className={sortDirection==="desc" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortDirection("desc")} title="Descending">⬇️</span>
             </div>
         </div>
+        {allArticles.length === 0 ? <p className="topics-message">{articleListMessage}</p> : null }
         <ul className="article-list">
         {allArticles.map((article, index) => (<li className="article-item" key={"articlecard"+index}><ArticleCard article={article} /></li>))}
         </ul>

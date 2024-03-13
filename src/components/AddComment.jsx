@@ -7,14 +7,16 @@ const AddComment = ({article_id, setComments, username}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (newCommentBody.length > 0){
+        if (newCommentBody.trim().length > 0){
             setFeedback('');
             postComment(article_id, username, newCommentBody).then(({comment}) => {
                 setComments((originalComments) => [comment, ...originalComments]);
                 setNewCommentBody('');
             }).catch(() => {
-                setFeedback('Error posting');
+                setFeedback('⛔ Error Posting Commment');
             })
+        }else{
+                setFeedback('⛔ Comment Too Short');
         }
     }
 
