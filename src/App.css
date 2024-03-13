@@ -100,3 +100,64 @@
     color: grey;
     filter: grayscale(100%);
 }
+
+.topics-list {
+    display: block;
+}
+
+.topic-item {
+    display:inline-block;
+    width: 10em;
+    height: 10em;
+    border: 1px solid #000;
+    position: relative;
+    text-align: center;
+    margin: 2em;
+    overflow: hidden;
+    box-shadow: 10px 10px 5px #c0c0d0;
+    border-radius: 1em;
+
+}
+
+.topic-item:hover {
+    border: 1px solid purple;
+    transform:scale(1.1);
+    transition:transform .4s;
+}
+
+.topic-name, .topic-description {
+    /* display: inline-block; */
+    position: absolute;
+    background-color:rgba(255,255,255, 0.7);
+}
+
+.topic-name {
+    left: 0;
+    top: 0.4em;
+    width: 100%;
+    font-weight: bolder;
+}
+
+.topic-description {
+    left: 0;
+    top: 2em;
+    height: 8em;
+    width: 100%;
+    overflow:hidden;
+}
+
+.topic-description:not(:hover) {
+    color: transparent;
+    background-color: transparent;
+}
+
+.topic-image {
+    display: block;
+    width: 10em;
+    height: 10em;
+    object-fit: cover;
+}
+
+nav>a {
+    margin: 2em;
+}
