@@ -11,15 +11,32 @@ const Article = () => {
     const [comments, setComments] = useState([]);
     const [allowVote, setAllowVote] = useState(true);
     const [feedback, setFeedback] = useState('');
+    const [articleMessage, setArticleMessage] = useState('Loading...');
+    const [commentsMessage, setCommentsMessage] = useState('');
 
     useEffect(() => {
+        setArticleMessage('Loading...');
         fetchArticle(article_id).then(({article}) => {
             setArticle(article);
-        });
-        fetchComments(article_id).then(({comments}) => {
-            setComments(comments);
+        }).catch(({response}) => {
+            if (response.status === 404){
+                setArticleMessage('⛔ Article Not Found');
+            }else{
+                setArticleMessage('⛔ Error Loading Article');
+            }
         });
     }, []);
+
+    useEffect(() => {
+        if (Object.keys(article).length > 0){
+            setCommentsMessage('');
+            fetchComments(article_id).then(({comments}) => {
+                setComments(comments);
+            }).catch(({response}) => {
+                setCommentsMessage('⛔ Error Loading Comments');
+            });
+        }
+    }, [article]);
 
     const updateVoteDisplay = (value) => {
         setArticle((originalArticle) => {
@@ -57,12 +74,13 @@ const Article = () => {
             </div>
             <div className="article-body">{article.body}</div>
             <h3>Comments</h3>
+            {commentsMessage ? <p className="article-comments-message">{commentsMessage}</p> : null }
             <ul className="comments-list">
                 <li className="comment-item newcomment" key="new-comment"><AddComment article_id={article_id} setComments={setComments} username={username} /></li>
                 {comments.length > 0 ? comments.map((comment) => (<li className="comment-item" key={"articlecard"+comment.comment_id}><CommentCard comment={comment} username={username} setComments={setComments} /></li>)) : <li>No comments yet. Be the first to have your say.</li>}
             </ul>
             </>
-        ) : <p className="loading">Loading...</p> }
+        ) : <p className="article-message">{articleMessage}</p> }
         </>
     );
 }
