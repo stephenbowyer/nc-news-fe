@@ -4,11 +4,17 @@ const marketApi = axios.create({
     baseURL: 'https://nc-news-40gp.onrender.com/api'
 })
 
-export const fetchArticles = (topic = '') => {
+export const fetchArticles = (topic = '', sortBy = '', sortDir = '') => {
     const queryParams = [];
     let queryString = "";
     if (topic){
         queryParams.push(`topic=${topic}`)
+    }
+    if (sortBy){
+        queryParams.push(`sort_by=${sortBy}`)
+    }
+    if (sortDir){
+        queryParams.push(`order=${sortDir}`)
     }
     if (queryParams.length > 0){
         queryString = "?"+queryParams.join('&');
