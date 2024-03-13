@@ -4,11 +4,19 @@ const marketApi = axios.create({
     baseURL: 'https://nc-news-40gp.onrender.com/api'
 })
 
-export const fetchArticles = () => {
-    return marketApi.get('/articles')
+export const fetchArticles = (topic = '') => {
+    const queryParams = [];
+    let queryString = "";
+    if (topic){
+        queryParams.push(`topic=${topic}`)
+    }
+    if (queryParams.length > 0){
+        queryString = "?"+queryParams.join('&');
+    }
+    return marketApi.get(`/articles${queryString}`)
     .then((response) => {
         return response.data
-    })
+    });
 }
 
 export const fetchArticle = (articleId) => {
@@ -41,6 +49,13 @@ export const postComment = (articleId, username, body) => {
 
 export const deleteComment = (commentId) => {
     return marketApi.delete(`/comments/${commentId}`)
+    .then((response) => {
+        return response.data
+    })
+}
+
+export const fetchTopics = () => {
+    return marketApi.get('/topics')
     .then((response) => {
         return response.data
     })
