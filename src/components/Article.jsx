@@ -18,8 +18,8 @@ const Article = () => {
         setArticleMessage('Loading...');
         fetchArticle(article_id).then(({article}) => {
             setArticle(article);
-        }).catch(({response}) => {
-            if (response.status === 404){
+        }).catch((result) => {
+            if (result.response.status === 404){
                 setArticleMessage('⛔ Article Not Found');
             }else{
                 setArticleMessage('⛔ Error Loading Article');
@@ -32,7 +32,7 @@ const Article = () => {
             setCommentsMessage('');
             fetchComments(article_id).then(({comments}) => {
                 setComments(comments);
-            }).catch(({response}) => {
+            }).catch(() => {
                 setCommentsMessage('⛔ Error Loading Comments');
             });
         }

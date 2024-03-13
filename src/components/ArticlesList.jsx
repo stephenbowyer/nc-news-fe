@@ -17,8 +17,8 @@ const ArticlesList = () => {
         fetchArticles(topic, sortBy, sortDirection).then(({articles}) => {
             setAllArticles(articles);
             setArticleListMessage('');
-        }).catch(({response}) => {
-            if (response.status === 404){
+        }).catch((result) => {
+            if (result.response.status === 404){
                 setArticleListMessage('⛔ Topic Not Found');
             }else{
                 setArticleListMessage('⛔ Error Loading Topic');
