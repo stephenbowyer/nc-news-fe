@@ -5,21 +5,8 @@ const marketApi = axios.create({
 })
 
 export const fetchArticles = (topic = '', sortBy = '', sortDir = '') => {
-    const queryParams = [];
-    let queryString = "";
-    if (topic){
-        queryParams.push(`topic=${topic}`)
-    }
-    if (sortBy){
-        queryParams.push(`sort_by=${sortBy}`)
-    }
-    if (sortDir){
-        queryParams.push(`order=${sortDir}`)
-    }
-    if (queryParams.length > 0){
-        queryString = "?"+queryParams.join('&');
-    }
-    return marketApi.get(`/articles${queryString}`)
+    const queryParams = {params: {topic, sort_by: sortBy, order: sortDir}};
+    return marketApi.get('/articles', queryParams)
     .then((response) => {
         return response.data
     });
