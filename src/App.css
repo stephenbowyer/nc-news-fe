@@ -161,3 +161,22 @@
 nav>a {
     margin: 2em;
 }
+
+.sort-by, .sort-dir {
+    display: inline;
+    margin: 0.3em;
+    font-weight: bold;
+}
+
+.sort-type {
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    border-radius: 50%;
+    margin: 0.3em;
+    padding: 0.3em;
+}
+
+.sort-selected {
+    border-color: green;
+}
