@@ -105,6 +105,10 @@
     display: block;
 }
 
+.topics-message {
+    height: 1em;
+}
+
 .topic-item {
     display:inline-block;
     width: 10em;

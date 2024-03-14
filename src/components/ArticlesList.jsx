@@ -40,7 +40,7 @@ const ArticlesList = () => {
                 <span className={sortDirection==="desc" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortDirection("desc")} title="Descending">⬇️</span>
             </div>
         </div>
-        {allArticles.length === 0 ? <p className="topics-message">{articleListMessage}</p> : null }
+        <p className="topics-message">{articleListMessage}</p>
         <ul className="article-list">
         {allArticles.map((article, index) => (<li className="article-item" key={"articlecard"+index}><ArticleCard article={article} /></li>))}
         </ul>
