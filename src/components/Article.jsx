@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from "react-router-dom";
 import { fetchArticle, fetchComments, upVoteArticle } from '../utils.js';
 import CommentCard from './CommentCard.jsx';
 import AddComment from './AddComment.jsx';
 
+import AllUsersContext from '../contexts/AllUsers.jsx';
+
 const Article = () => {
-    const username = "grumpy19"; // hard coded user
     const {article_id} = useParams();
     const [article, setArticle] = useState({});
     const [comments, setComments] = useState([]);
@@ -13,6 +14,7 @@ const Article = () => {
     const [feedback, setFeedback] = useState('');
     const [articleMessage, setArticleMessage] = useState('Loading...');
     const [commentsMessage, setCommentsMessage] = useState('');
+    const {userListByUser} = useContext(AllUsersContext);
 
     useEffect(() => {
         setArticleMessage('Loading...');
@@ -67,7 +69,8 @@ const Article = () => {
             <img className="article-image" src={article.article_img_url} />
             <div>
                 <span className="article-date">Posted {new Date(Date.parse(article.created_at)).toLocaleString()}</span>
-                <span className="author">By {article.author}</span>
+                <span className="author" title={article.author}>By {userListByUser[article.author].name}
+                    <img className="avatar-image" src={userListByUser[article.author].avatar_url}/></span>
                 <span className={allowVote ? 'up-vote clickable' : 'up-vote'} onClick={upVote} title="Upvote Article">🔼{article.votes}</span>
                 <span className="comments" title="Number Of Comments">✉️{comments.length}</span>
                 <span className="article-feedback">{feedback}</span>
@@ -76,8 +79,8 @@ const Article = () => {
             <h3>Comments</h3>
             {commentsMessage ? <p className="article-comments-message">{commentsMessage}</p> : null }
             <ul className="comments-list">
-                <li className="comment-item newcomment" key="new-comment"><AddComment article_id={article_id} setComments={setComments} username={username} /></li>
-                {comments.length > 0 ? comments.map((comment) => (<li className="comment-item" key={"articlecard"+comment.comment_id}><CommentCard comment={comment} username={username} setComments={setComments} /></li>)) : <li>No comments yet. Be the first to have your say.</li>}
+                <li className="comment-item newcomment" key="new-comment"><AddComment article_id={article_id} setComments={setComments} /></li>
+                {comments.length > 0 ? comments.map((comment) => (<li className="comment-item" key={"articlecard"+comment.comment_id}><CommentCard comment={comment} setComments={setComments} /></li>)) : <li>No comments yet. Be the first to have your say.</li>}
             </ul>
             </>
         ) : <p className="article-message">{articleMessage}</p> }
