@@ -25,7 +25,7 @@ const Article = () => {
                 setArticleMessage('⛔ Error Loading Article');
             }
         });
-    }, []);
+    }, [article_id]);
 
     useEffect(() => {
         if (Object.keys(article).length > 0){
@@ -68,8 +68,8 @@ const Article = () => {
             <div>
                 <span className="article-date">Posted {new Date(Date.parse(article.created_at)).toLocaleString()}</span>
                 <span className="author">By {article.author}</span>
-                <span className={allowVote ? 'up-vote clickable' : 'up-vote'} onClick={upVote}>🔼{article.votes}</span>
-                <span className="comments">✉️{article.comment_count}</span>
+                <span className={allowVote ? 'up-vote clickable' : 'up-vote'} onClick={upVote} title="Upvote Article">🔼{article.votes}</span>
+                <span className="comments" title="Number Of Comments">✉️{comments.length}</span>
                 <span className="article-feedback">{feedback}</span>
             </div>
             <div className="article-body">{article.body}</div>
