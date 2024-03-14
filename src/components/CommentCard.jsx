@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { deleteComment } from "../utils.js";
 
-const CommentCard = ({comment, username, setComments}) => {
+import UserContext from '../contexts/User.jsx';
+import AllUsersContext from '../contexts/AllUsers.jsx';
+
+const CommentCard = ({comment, setComments}) => {
     const [feedback, setFeedback] = useState('');
     const [deleting, setDeleting] = useState(false);
+    const {userListByUser} = useContext(AllUsersContext);
+    const {loggedInUser} = useContext(UserContext);
 
     const removeComment = () => {
         setFeedback('');
@@ -25,9 +30,10 @@ const CommentCard = ({comment, username, setComments}) => {
         <div className={!deleting ? 'comment-container' : 'comment-container comment-deleting'}>
             <span className="comment-text">{comment.body}</span>
             <div className="comment-controls">
-                <span className="author">By {comment.author}</span>
+                <span className="author" title={comment.author}>By {userListByUser[comment.author].name}
+                    <img className="avatar-image" src={userListByUser[comment.author].avatar_url}/></span>
                 <span className="up-vote" title="Upvote Comment">🔼{comment.votes}</span>
-                {comment.author === username ? <span className="delete clickable" onClick={removeComment} title="Delete Comment">❌</span> : null}
+                {comment.author === loggedInUser.username ? <span className="delete clickable" onClick={removeComment} title="Delete Comment">❌</span> : null}
                 <span className="comment-feedback">{feedback}</span>
             </div>
         </div>

@@ -53,3 +53,10 @@ export const fetchTopics = () => {
         return response.data
     })
 }
+
+export const fetchUsers = () => {
+    return newsApi.get('/users')
+    .then((response) => {
+        return response.data
+    })
+}
