@@ -15,7 +15,7 @@ const ArticleCard = ({article}) => {
         <span className="author" title={article.author}>By {userListByUser[article.author].name}
             <img className="avatar-image" src={userListByUser[article.author].avatar_url}/></span>
         <span className="up-vote">👍{article.votes}</span>
-        <span className="comments">✉️{article.comment_count}</span>
+        <span className="comments">💬{article.comment_count}</span>
         </>
     );
 }

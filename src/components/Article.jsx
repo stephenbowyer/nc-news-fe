@@ -76,7 +76,7 @@ const Article = () => {
                     {article.votes}
                     <span className={allowVote ? "clickable" : "unclickable"} onClick={() => upVote(-1)} title="Downvote Comment">👎</span>
                 </span>
-                <span className="comments" title="Number Of Comments">✉️{comments.length}</span>
+                <span className="comments" title="Number Of Comments">💬{comments.length}</span>
                 <span className="article-feedback">{feedback}</span>
             </div>
             <div className="article-body">{article.body}</div>
