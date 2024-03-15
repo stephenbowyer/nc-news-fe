@@ -28,7 +28,7 @@ const ArticlesList = () => {
 
     return (
         <>
-        <h2>{topic ? "Topic: "+topic : "All Topics"}</h2>
+        <h2>{topic ? "Topic: "+topic : "All Articles"}</h2>
         <div className="sort-outer">
             <div className="sort-by">Sort By:
                 <span className={sortBy==="created_at" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortBy("created_at")} title="Date">📅</span>
