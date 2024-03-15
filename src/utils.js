@@ -47,6 +47,13 @@ export const deleteComment = (commentId) => {
     })
 }
 
+export const upVoteComment = (commentId, votes = 1) => {
+    return newsApi.patch(`/comments/${commentId}`, {inc_votes: votes})
+    .then((response) => {
+        return response.data
+    })
+}
+
 export const fetchTopics = () => {
     return newsApi.get('/topics')
     .then((response) => {
