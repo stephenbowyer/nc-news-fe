@@ -1,10 +1,50 @@
 body{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: linear-gradient(to right, #f0f0f0, #e0e0e0);
+    background-image: linear-gradient(to right, #f0f0f0, #e0f0e0);
 }
 
 a{
     color: black;
+}
+
+nav {
+    max-width: 35em;
+    white-space: wrap;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 2em;
+}
+
+.nav-item{
+    margin: auto;
+    white-space: nowrap;
+}
+
+.header-title>h1{
+    display: inline;
+}
+
+.header-login{
+    float: right;
+}
+
+@media only screen and (max-width : 768px) /*was: (max-device-width : 768px) */
+{
+    .login-list{
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+    .topics-list{
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+    .header-username{
+        display: none;
+    }
 }
 
 .comment-item{
@@ -170,10 +210,6 @@ a{
     width: 10em;
     height: 10em;
     object-fit: cover;
-}
-
-nav>a {
-    margin: 2em;
 }
 
 .sort-by, .sort-dir {
