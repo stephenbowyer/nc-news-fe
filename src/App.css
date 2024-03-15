@@ -7,10 +7,6 @@ a{
     color: black;
 }
 
-a:hover{
-    background-color: rgba(128, 0, 117, 0.1);
-}
-
 .comment-item{
     list-style-type: none;
     line-height: 1.6em;
