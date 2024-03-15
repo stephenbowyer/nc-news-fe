@@ -33,7 +33,7 @@ const ArticlesList = () => {
             <div className="sort-by">Sort By:
                 <span className={sortBy==="created_at" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortBy("created_at")} title="Date">📅</span>
                 <span className={sortBy==="comment_count" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortBy("comment_count")} title="Number of Comments">✉️</span>
-                <span className={sortBy==="votes" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortBy("votes")} title="Number of Votes">🔼</span>
+                <span className={sortBy==="votes" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortBy("votes")} title="Number of Votes">👍</span>
             </div>
             <div className="sort-dir">Direction:
                 <span className={sortDirection==="asc" ? "sort-type sort-selected" : "sort-type"} onClick={() => setSortDirection("asc")} title="Ascending">⬆️</span>

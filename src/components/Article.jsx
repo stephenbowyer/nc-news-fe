@@ -48,13 +48,13 @@ const Article = () => {
         });
     }
 
-    const upVote = () => {
+    const upVote = (votes = 1) => {
         if (allowVote){
             setFeedback('');
-            updateVoteDisplay(1);
+            updateVoteDisplay(votes);
             setAllowVote(false);
-            upVoteArticle(article_id).catch(() => {
-                updateVoteDisplay(-1);
+            upVoteArticle(article_id, votes).catch(() => {
+                updateVoteDisplay(-votes);
                 setAllowVote(true);
                 setFeedback('Unable to update vote');
             });
@@ -71,7 +71,11 @@ const Article = () => {
                 <span className="article-date">Posted {new Date(Date.parse(article.created_at)).toLocaleString()}</span>
                 <span className="author" title={article.author}>By {userListByUser[article.author].name}
                     <img className="avatar-image" src={userListByUser[article.author].avatar_url}/></span>
-                <span className={allowVote ? 'up-vote clickable' : 'up-vote'} onClick={upVote} title="Upvote Article">🔼{article.votes}</span>
+                <span className="up-vote">
+                    <span className={allowVote ? "clickable" : "unclickable"} onClick={() => upVote(1)} title="Upvote Comment">👍</span>
+                    {article.votes}
+                    <span className={allowVote ? "clickable" : "unclickable"} onClick={() => upVote(-1)} title="Downvote Comment">👎</span>
+                </span>
                 <span className="comments" title="Number Of Comments">✉️{comments.length}</span>
                 <span className="article-feedback">{feedback}</span>
             </div>
